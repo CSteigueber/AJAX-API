@@ -5,7 +5,10 @@ var url="https://api.whatdoestrumpthink.com/api/v1/quotes";
 
 const speak =(msg)=>{
     var sound = new SpeechSynthesisUtterance(msg);
-    
+    sound.lang="en-US";
+    sound.pitch=1.5;
+    sound.rate=0.9;
+
     window.speechSynthesis.speak(sound);
 }
 
@@ -25,7 +28,6 @@ const unpersonalQuote=(list)=>{
 }
 
 (async function(){
-    document.getElementById("output").innerHTML= ("I made it!");
     var api= await fetch(url);
     var quotes= await api.json();
     personal=quotes.messages.personalized;
