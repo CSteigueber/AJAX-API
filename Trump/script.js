@@ -3,12 +3,25 @@ var nonPersonal=[];
 
 var url="https://api.whatdoestrumpthink.com/api/v1/quotes";
 
+const speak =(msg)=>{
+    var sound = new SpeechSynthesisUtterance(msg);
+    
+    window.speechSynthesis.speak(sound);
+}
+
+
 const personalQuote=(list, name)=>{
-    document.getElementById("output").innerHTML= (name+" "+list[Math.floor(Math.random()*list.length)]);
+    var msg=name+" "+list[Math.floor(Math.random()*list.length)];
+    document.getElementById("output").innerHTML= (msg);
+    speak(msg);
+    
 }
 
 const unpersonalQuote=(list)=>{
-    document.getElementById("output").innerHTML= (list[Math.floor(Math.random()*list.length)]);
+    var msg=list[Math.floor(Math.random()*list.length)];
+    document.getElementById("output").innerHTML= (msg);
+    speak(msg);
+
 }
 
 (async function(){
@@ -25,7 +38,7 @@ const unpersonalQuote=(list)=>{
         unpersonalQuote(nonPersonal);
     });
     document.getElementById("yomama").addEventListener("click", ()=>{
-        personalQuote(personal,"Yo mamma");
+        personalQuote(personal,"Yo momma");
     })
 })();
 
