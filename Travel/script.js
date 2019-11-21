@@ -5,23 +5,22 @@
 var url="https://www.travel-advisory.info/api";
 var api= await fetch(url);
 var arr= await api.json();
-arr=arr.data.DE;
-console.table(arr);
-document.getElementById("run").addEventListener("click",function (arr){
+arr=arr.data;
+document.getElementById("run").addEventListener("click",function (){
+    //console.log(arr["DE"]);
     let str=document.getElementById("input").value;
-    let success=false;
     let safety=999;
-    arr.forEach(el => {
-        if (el.name==str){
-            success=true;
-            safety=el.advisory.score;
-        }
-    });
-    if (!success){
+
+    if (!arr[str]){
         console.log(str+" not found");
     }
     else {
-        console.log(" The safety score in "+str+" is "+safety);
+        console.log(" The safety score in "+arr[str].name+" is "+arr[str].advisory.score);
+        let div=document.getElementById("output");
+        let p=document.createElement("p");
+        let node= document.createTextNode(" The safety score in "+arr[str].name+" is "+arr[str].advisory.score);
+        p.appendChild(node);
+        div.appendChild(p);
     }
 })
 
@@ -29,3 +28,9 @@ document.getElementById("run").addEventListener("click",function (arr){
 
 console.log("end of script!");
 })();
+        /*  arr.forEach(el => {
+              if (el.name==str){
+                  success=true;
+                  safety=el.advisory.score;
+              }
+          });*/
