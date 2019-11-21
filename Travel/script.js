@@ -1,10 +1,10 @@
 (async function (){
 var abc="A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(" ");
-console.log(abc);
 var url="https://www.travel-advisory.info/api";
 var api= await fetch(url);
 var arr= await api.json();
 arr=arr.data;
+console.log(arr);
 
 document.getElementById("run").addEventListener("click",function (){
     let str=document.getElementById("input").value;
@@ -12,13 +12,13 @@ document.getElementById("run").addEventListener("click",function (){
 // If a country name is entered its iso code must be found:
     if (str.length>2){
         for (let i=0; i<abc.length;i++){
-            for (let j=0;i<abc.length; j++){
-                if (arr[abc[i]+abc[j]]!=undefined){
-                    console.log(abc[i]+abc[j]);
+            for (let j=0;j<abc.length; j++){
+                if (arr[abc[i]+abc[j]]!=undefined  &&  arr[(abc[i]+abc[j])].name==str){
+                    str=abc[i]+abc[j];
+                    console.log(str);
                 }
             } 
         }
-        console.log("finished")
     }
 
     if (!arr[str]){
