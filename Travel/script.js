@@ -7,7 +7,7 @@ var api= await fetch(url);
 var arr= await api.json();
 arr=arr.data;
 document.getElementById("run").addEventListener("click",function (){
-    //console.log(arr["DE"]);
+    console.log(arr);
     let str=document.getElementById("input").value;
     let safety=999;
 
