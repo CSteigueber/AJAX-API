@@ -1,6 +1,6 @@
-var mapsKey="AIzaSyDrW3N6Y4XKYQ75b6qjXPZNsQtRh6MsP5g";
+var mapsKey="";
 
-
+  
 
 (async function (){
 var url="https://www.travel-advisory.info/api";
@@ -29,9 +29,3 @@ document.getElementById("run").addEventListener("click",function (){
 
 console.log("end of script!");
 })();
-        /*  arr.forEach(el => {
-              if (el.name==str){
-                  success=true;
-                  safety=el.advisory.score;
-              }
-          });*/
