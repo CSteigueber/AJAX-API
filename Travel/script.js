@@ -26,11 +26,12 @@ const printArr =(str,arr)=>{
 }
 //-------------------------main function------------------------------------------
 (async function main(){
-    var abc="A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(" ");
-    var url="https://www.travel-advisory.info/api";
-    var api= await fetch(url);
-    var arr= await api.json();
+    const abc="A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(" ");
+    const url1="https://www.travel-advisory.info/api";
+    const api1= await fetch(url1);
+    var arr= await api1.json();
     arr=arr.data;
+
 //------------------------------------------get a list of available country codes
     let countries=[];
     for (let i=0; i<abc.length;i++){
