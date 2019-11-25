@@ -34,25 +34,30 @@ function onPositionUpdate(position)
 {
     lat = position.coords.latitude;
     lng = position.coords.longitude;
-    console.log("Current position: " + lat + " " + lng);
-
+}
+async function getData (lat, lng){
+            let url=`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`;
+        let api= await fetch(url);
+        let arr= await api.json();
+        arr=arr.results;
+        setResults(arr);
 }
 
 
 (function (){
-    console.log("Howdie partner!");
     getPosition();
     document.getElementById("local").addEventListener("click",async function(){
-        const url=`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`;
-        console.log(url);
-        let api= await fetch(url);
-        let arr= await api.json();
-        arr=arr.results;
-        console.log(arr);
-        setResults(arr);
-
-
+        getData(lat,lng);
     })
-   
+   document.getElementById("search").addEventListener("click", async function(){
+       const adress=document.getElementById("input").value;
+       console.log(adress);
+       let url=`https://geocode.xyz/${adress}?json=1`;
+       let api=await fetch(url);
+       let res= await api.json();
+       lat= res.elevation.latt;
+       lng= res.elevation.longt;
+        getData(lat,lng);
+   })
 
 })();

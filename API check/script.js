@@ -1,4 +1,4 @@
-const url="https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=today";
+const url="https://geocode.xyz/Haselbusch.,+28757+Bremen-Vegesack?json=1";
 
 (async function() {
     const api=await fetch(url);
