@@ -48,7 +48,8 @@ async function getAdress(lat, lng){
        url=`https://geocode.xyz/${lat},${lng}?json=1`;
        api= await fetch(url);
        res= await api.json();
-       let location=`${res.city}, ${res.country}`;
+       let location=`${res.city}, ${res.country}, timezone: ${res.timezone}`;
+       console.log(res);
        return(location);
 }
 
