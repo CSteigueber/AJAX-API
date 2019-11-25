@@ -2,6 +2,7 @@ var lat=0;
 var lng=0;
 function getPosition(){
      if(navigator.geolocation){
+         console.log("Howdie partner!");
         navigator.geolocation.getCurrentPosition(onPositionUpdate);
         
     }
@@ -19,7 +20,8 @@ function setNodes(id,value){
     p.appendChild(node)
     document.getElementById(id).appendChild(p);
 }
-function setResults(arr){
+function setResults(arr, adress){
+    setNodes("location", adress);
     setNodes("a-twil-begin",arr.astronomical_twilight_begin)
     setNodes("n-twil-begin",arr.nautical_twilight_begin)
     setNodes("c-twil-begin",arr.civil_twilight_begin)
@@ -36,28 +38,38 @@ function onPositionUpdate(position)
     lng = position.coords.longitude;
 }
 async function getData (lat, lng){
-            let url=`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`;
+        let url=`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=today`;
         let api= await fetch(url);
         let arr= await api.json();
         arr=arr.results;
-        setResults(arr);
+        return(arr);
 }
-
+async function getAdress(lat, lng){
+       url=`https://geocode.xyz/${lat},${lng}?json=1`;
+       api= await fetch(url);
+       res= await api.json();
+       let location=`${res.city}, ${res.country}`;
+       return(location);
+}
 
 (function (){
     getPosition();
-    document.getElementById("local").addEventListener("click",async function(){
-        getData(lat,lng);
+    document.getElementById("local").addEventListener("click",async function localData(){
+        let arr=await getData(lat,lng);
+        let location=await getAdress(lat,lng);
+        setResults(arr,location);
     })
-   document.getElementById("search").addEventListener("click", async function(){
-       const adress=document.getElementById("input").value;
-       console.log(adress);
+   
+    document.getElementById("search").addEventListener("click", async function remoteData(){
+       let adress=document.getElementById("input").value;
        let url=`https://geocode.xyz/${adress}?json=1`;
        let api=await fetch(url);
        let res= await api.json();
-       lat= res.elevation.latt;
-       lng= res.elevation.longt;
-        getData(lat,lng);
+       let lat= res.latt;
+       let lng= res.longt;
+       let location=await getAdress(lat,lng);
+       let arr=await getData(lat,lng);
+       setResults(arr,location);
    })
 
 })();
