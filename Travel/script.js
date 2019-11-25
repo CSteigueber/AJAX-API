@@ -31,6 +31,7 @@ const printArr =(str,arr)=>{
     const api1= await fetch(url1);
     var arr= await api1.json();
     arr=arr.data;
+    console.log(arr);
 
 //------------------------------------------get a list of available country codes
     let countries=[];
