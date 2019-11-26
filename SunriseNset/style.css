@@ -1,0 +1,45 @@
+body{
+    background-color: lightblue;
+}
+#output{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 20% 20% 20% 40%;
+    grid-template-areas:  ". loc tim ."
+                          "ab nb cb sr"
+                          "ae ne ce ss"
+                          "pic pic . .";
+}
+#times{
+    grid-area: tim;
+}
+#location{
+    grid-area: loc;
+}
+#a-twil-begin{
+    grid-area: ab;
+}
+#n-twil-begin{
+    grid-area: nb;
+}
+#c-twil-begin{
+    grid-area: cb;
+}
+#sunrise{
+    grid-area: sr;
+}
+#a-twil-end{
+    grid-area: ae;
+}
+#n-twil-end{
+    grid-area: ne;
+}
+#c-twil-end{
+    grid-area: ce;
+}
+#sunset{
+    grid-area: ss;
+}
+#pic{
+    grid-area: pic;
+}

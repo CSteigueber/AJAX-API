@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>SunriseNset</title>
 </head>
 <body>
-    <button id="local">Get local data</button>
+    <button id="local">Get local data for today</button>
     <input type="text" id="input" value="Enter city name">
-    <button id="search">Search data for this city</button>
-    <article id="output"> All times are UTC
-        <div id="location">Data shown for </div>
+    <input type="text" id="date" value="YYYY-MM-DD">
+    <button id="search">Search</button>
+    <article id="output"> 
+        <div id="times">All times are UTC</div>
+        <div id="location"></div>
         <div id="a-twil-begin">Begin astronomical twilight</div>
         <div id="n-twil-begin">Begin nautical twilight</div>
         <div id="c-twil-begin">Begin civil twilight</div>
@@ -20,6 +23,7 @@
         <div id="c-twil-end">End civil twilight</div>
         <div id="n-twil-end">End nautical twilight</div>
         <div id="a-twil-end">End astronomical twilight</div>
+        <img id="pic" src="./pics/Twilight-1.png" alt="twilight not found">
     </article>
     <script src="script.js"></script>
 </body>
